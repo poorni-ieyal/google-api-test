@@ -1,0 +1,70 @@
+<p>kiismet works!</p>
+<div class="ui">
+    <button (click)="GetKiismetData()">Get Kiismet Details</button>
+    <button (click)="GetFragrance()">Get Fragrance</button>
+
+    <input type="text" placeholder="Search.." name="search" [(ngModel)]="searchText">
+</div>
+
+<!-- <div class="row" *ngFor="let row of sheetDetail.slice(0, 240)">
+    <div class="col-lg-2 card" *ngFor="let cell of row.slice(0, 6)">
+        <p>{{ cell }}</p>
+    </div>
+</div> -->
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th *ngFor="let header of sheetDetail[0]">{{ header }}</th>
+            <!-- Assuming the first row contains headers -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of sheetDetail.slice(1, 241)">
+            <!-- Assuming the first row is headers -->
+            <td *ngFor="let cell of row">{{ cell }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- categorywise product showcase -->
+
+<!-- Menu - sidebar  -->
+<div class="row">
+    <div class="col-lg-2 menu">
+        <ul>
+            <li (click)="changeMenu('all')" [ngClass]="{'new':selectedBrand=='all'}">All</li>
+            <li *ngFor="let instance of brands" (click)="changeMenu(instance.brand)" [ngClass]="{'new':selectedBrand==instance.brand}">{{instance.brand}} </li>
+
+        </ul>
+    </div>
+
+    <!-- products shown -->
+    <div class="col-lg-10">
+        <div class="row design">
+            <ng-container *ngFor="let instance of sheetDetail1">
+                <!-- selectbrand , all brand and search  -->
+                <div class="col-lg-3" *ngIf="(selectedBrand==instance.brand || selectedBrand=='all') && (instance.description.toLowerCase().includes(searchText.toLowerCase()))">
+
+                    <div class=" card">
+
+                        <img [src]="instance.image" alt="brands">
+                        <h4>{{instance.brand}} </h4>
+
+                        <p>{{instance.description}} </p>
+                        <h6>{{instance.price}} </h6>
+                        <span (click)="addToCart(instance)"><i class="bi bi-cart-fill icon"></i></span>
+                        <div class="quantity">
+                            <button (click)="decreaseQuantity(instance)" class="quantity-btn">-</button>
+                            <span class="quantity-value">{{instance.quantity || 0}}</span>
+                            <button (click)="increaseQuantity(instance)" class="quantity-btn">+</button>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+.design img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    background-color: cornsilk;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.new {
+    color: blue;
+    font-weight: bold;
+}
+
+.menu {
+    background-color: lightgreen;
+}
+
+.ui {
+    display: flex;
+    gap: 20px;
+}
+
+.icon {
+    font-size: 30px;
+    color: black;
+}
