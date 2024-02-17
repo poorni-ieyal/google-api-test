@@ -55,10 +55,10 @@
 
                         <p>{{instance.description}} </p>
                         <h6>{{instance.price}} </h6>
-                        <span (click)="addToCart(instance)"><i class="bi bi-cart-fill icon"></i></span>
-                        <div class="quantity">
+                        <span *ngIf="checkCart(instance) == -1" (click)="addToCart(instance)"><i class="bi bi-cart-fill icon"></i></span>
+                        <div *ngIf="checkCart(instance) != -1" class="quantity">
                             <button (click)="decreaseQuantity(instance)" class="quantity-btn">-</button>
-                            <span class="quantity-value">{{instance.quantity || 0}}</span>
+                            <span class="quantity-value">{{cartedProduct[checkCart(instance)].quantity}}</span>
                             <button (click)="increaseQuantity(instance)" class="quantity-btn">+</button>
                         </div>
 

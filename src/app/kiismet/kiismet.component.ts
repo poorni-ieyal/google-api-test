@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { GooglesheetService } from '../googlesheet.service';
+import { findIndex } from 'rxjs';
 
 @Component({
   selector: 'app-kiismet',
@@ -14,6 +15,7 @@ export class KiismetComponent {
   brands:Array<any>=[];
   searchText:string = '';
   cartedProduct: Array<any> = [];
+  cartIndex: any;
   
   
 
@@ -70,8 +72,6 @@ changeMenu(id: string){
 
 }
 
-
-
 getBrand(){
   
   this.googleSheetService.getData('1-DcZZgJ8Y2HcKR-NVmsSuzcTx_Vb5iqSorWAz-idu1o','Sheet2').subscribe(
@@ -92,15 +92,48 @@ getBrand(){
 }
 
 addToCart(product:any){
+  let temp = JSON.parse(JSON.stringify(product))
   console.log('product added to cart', product);
-  //  this.sheetDetail1.some((instance=>instance.description === product.description))
-  
-  
+  //  const checkProductAvailable = this.checkCart(product);
+   const cartIndex = this.checkCart(product);
+  //  console.log('checkProductAvailable', checkProductAvailable);
+   console.log('cartIndex', cartIndex);
+   temp['quantity']=1; //dynamically add key(quantity) into existing object product
+
+    if (cartIndex == -1) {
+     this.cartedProduct.push(temp);
+    }
+    console.log('cartedProduct', this.cartedProduct);
 }
+
+checkCart(product:any){
+  // const checkProductAvailable = this.cartedProduct.some(((instance:any)=>instance.description === product.description))//using some method to find carted product's availability
+  const cartIndex = this.cartedProduct.findIndex(((instance:any)=>instance.description === product.description));
+  return cartIndex;
+}
+
 decreaseQuantity(product:any){
+  let index=this.checkCart(product);
+
+if(this.cartedProduct[index].quantity>1){
+    this.cartedProduct[index].quantity--;
+
+  console.log('carted product removal',this.cartedProduct)
+}  
+else if(this.cartedProduct[index].quantity==1){
+  this.cartedProduct.splice(index,1)
+}
+
 
 }
-increaseQuantity(product:any){
 
+increaseQuantity(product:any){
+  let index=this.checkCart(product);
+  console.log('index',index);
+  this.cartedProduct[index].quantity++;
+
+  // product.quantity++;
+  console.log('cartedProduct',this.cartedProduct)
+  console.log('whole product',this.sheetDetail1)
 }
 }
