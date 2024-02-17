@@ -43,6 +43,7 @@
 
     <!-- products shown -->
     <div class="col-lg-10">
+
         <div class="row design">
             <ng-container *ngFor="let instance of sheetDetail1">
                 <!-- selectbrand , all brand and search  -->
@@ -57,14 +58,40 @@
                         <h6>{{instance.price}} </h6>
                         <span *ngIf="checkCart(instance) == -1" (click)="addToCart(instance)"><i class="bi bi-cart-fill icon"></i></span>
                         <div *ngIf="checkCart(instance) != -1" class="quantity">
-                            <button (click)="decreaseQuantity(instance)" class="quantity-btn">-</button>
-                            <span class="quantity-value">{{cartedProduct[checkCart(instance)].quantity}}</span>
-                            <button (click)="increaseQuantity(instance)" class="quantity-btn">+</button>
-                        </div>
 
+                            <button (click)="decreaseQuantity(instance)" class="quantity-btn1">-</button>
+                            <span class="quantity-value">{{cartedProduct[checkCart(instance)].quantity}}</span>
+                            <button (click)="increaseQuantity(instance)" class="quantity-btn1">+</button>
+
+                        </div>
                     </div>
                 </div>
             </ng-container>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Order List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+    </div>
+    <hr class="line">
+    <div class="offcanvas-body">
+        <div class="" *ngFor="let instance of cartedProduct">
+            <h6>Brand : {{instance.brand}} </h6>
+            <h6>Product name : {{instance.description}} </h6>
+            <h6>Price : {{instance.price}} </h6>
+            <h6>Quantity : {{instance.quantity}} </h6>
+            <div class="quantity-icon">
+                <button (click)="decreaseQuantity(instance)" class="quantity-btn">-</button>
+                <!-- <span class="quantity-value">{{cartedProduct[checkCart(instance)].quantity}}</span> -->
+                <input class="quantity" type="text" [(ngModel)]="instance.quantity">
+                <button (click)="increaseQuantity(instance)" class="quantity-btn">+</button>
+            </div>
+
+            <hr class="line">
         </div>
     </div>
 </div>

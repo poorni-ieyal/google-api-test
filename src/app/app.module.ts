@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { KiismetComponent } from './kiismet/kiismet.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    KiismetComponent
+    KiismetComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

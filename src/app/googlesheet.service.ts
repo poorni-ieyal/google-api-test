@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,15 @@ export class GooglesheetService {
   return this.http.get<any>(apiUrl)
   }
 
+  // updateValues(newValues: any[][]): Observable<any> {
+  //   const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/${this.range}?key=${this.apiKey}`;
+  //   const body = { values: newValues };
+
+  //   return this.http.put(url, body);
+  // }
+
 }
+
+
+ 
+// https://sheets.googleapis.com/v4/spreadsheets/1-DcZZgJ8Y2HcKR-NVmsSuzcTx_Vb5iqSorWAz-idu1o/values/Sheet3?key=AIzaSyByctSlhz2UhL_R-a9TbcH7Fcnh4UyFV1s

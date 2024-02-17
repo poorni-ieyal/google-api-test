@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { GooglesheetService } from '../googlesheet.service';
-import { findIndex } from 'rxjs';
+import { DataSharingService } from '../data-sharing.service';
 
 @Component({
   selector: 'app-kiismet',
@@ -19,7 +19,7 @@ export class KiismetComponent {
   
   
 
-  constructor(private http : HttpClient, private googleSheetService : GooglesheetService){
+  constructor(private http : HttpClient, private googleSheetService : GooglesheetService, private dataShare : DataSharingService){
 
   }
   ngOnInit() {
@@ -102,6 +102,7 @@ addToCart(product:any){
 
     if (cartIndex == -1) {
      this.cartedProduct.push(temp);
+     this.dataShare.changeQuantity(this.cartedProduct.length)
     }
     console.log('cartedProduct', this.cartedProduct);
 }
@@ -122,9 +123,8 @@ if(this.cartedProduct[index].quantity>1){
 }  
 else if(this.cartedProduct[index].quantity==1){
   this.cartedProduct.splice(index,1)
+  this.dataShare.changeQuantity(this.cartedProduct.length)
 }
-
-
 }
 
 increaseQuantity(product:any){
