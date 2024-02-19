@@ -1,9 +1,11 @@
-<p>kiismet works!</p>
-<div class="ui">
-    <button (click)="GetKiismetData()">Get Kiismet Details</button>
-    <button (click)="GetFragrance()">Get Fragrance</button>
+<div class="kiismet">
+    <p>kiismet works!</p>
+    <div class="ui">
+        <button (click)="GetKiismetData()">Get Kiismet Details</button>
+        <button (click)="GetFragrance()">Get Fragrance</button>
 
-    <input type="text" placeholder="Search.." name="search" [(ngModel)]="searchText">
+        <input type="text" placeholder="Search.." name="search" [(ngModel)]="searchText">
+    </div>
 </div>
 
 <!-- <div class="row" *ngFor="let row of sheetDetail.slice(0, 240)">
@@ -71,7 +73,7 @@
     </div>
 </div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" *ngIf="cartedProduct.length > 0" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Order List</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -89,6 +91,8 @@
                 <!-- <span class="quantity-value">{{cartedProduct[checkCart(instance)].quantity}}</span> -->
                 <input class="quantity" type="text" [(ngModel)]="instance.quantity">
                 <button (click)="increaseQuantity(instance)" class="quantity-btn">+</button>
+                <h6 (click)="calculatePrice(instance.quantity,instance.price,instance)">Total : </h6>
+
             </div>
 
             <hr class="line">

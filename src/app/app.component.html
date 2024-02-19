@@ -1,11 +1,13 @@
 <app-header></app-header>
-<button (click)="getSheet1Data()">sheet1</button>
-<button (click)="getSheet2Data()">Sheet2</button>
-<div class="row">
-    <div class="col-lg-3 card" *ngFor="let instance of sheetDetail">
-        <h4>{{instance.progress}}</h4>
-        <h6>{{instance.date}}</h6>
-        <h6>{{instance.status}} </h6>
+<div class="sheets">
+    <button (click)="getSheet1Data()">sheet1</button>
+    <button (click)="getSheet2Data()">Sheet2</button>
+    <div class="row">
+        <div class="col-lg-3 card" *ngFor="let instance of sheetDetail">
+            <h4>{{instance.progress}}</h4>
+            <h6>{{instance.date}}</h6>
+            <h6>{{instance.status}} </h6>
+        </div>
     </div>
 </div>
 

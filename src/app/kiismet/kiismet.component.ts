@@ -68,7 +68,7 @@ export class KiismetComponent {
 
 changeMenu(id: string){
   this.selectedBrand=id;
-  console.log(this.selectedBrand);
+  console.log('selectedbrand',this.selectedBrand);
 
 }
 
@@ -105,6 +105,7 @@ addToCart(product:any){
      this.dataShare.changeQuantity(this.cartedProduct.length)
     }
     console.log('cartedProduct', this.cartedProduct);
+    console.log('cartIndex', cartIndex);
 }
 
 checkCart(product:any){
@@ -136,4 +137,13 @@ increaseQuantity(product:any){
   console.log('cartedProduct',this.cartedProduct)
   console.log('whole product',this.sheetDetail1)
 }
+
+calculatePrice(quantity:number,price:number, instance:any){
+  let index=this.checkCart(instance);
+
+let total = this.cartedProduct[index].quantity * this.cartedProduct[index].price;
+console.log('totalPrice',total);
+}
+  
+
 }
